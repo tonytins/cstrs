@@ -8,16 +8,6 @@ const LINE_ENDING: &'static str = "\n";
 const CARET: char = '^';
 
 /// Converts the content into a vector of strings, each string being a line.
-///
-/// # Example
-/// ```
-/// let input = normalize_entries("1 ^The quick brown fox^\n2 ^jumps over the lazy dog^");
-/// let expected = [
-/// "1 ^The quick brown fox".to_string(),
-/// "2 ^jumps over the lazy dog^".to_string(),
-/// ];
-/// assert_eq!(input, expected);
-/// ```
 fn normalize_entries<S: Into<String>>(content: S) -> Vec<String> {
     let cst_ending = format!("{}{}", CARET, LINE_ENDING);
     let entries = content
@@ -70,7 +60,7 @@ mod tests {
         dbg!(format!("{:?}", input));
         let expected = [
             "1 ^The quick brown fox".to_string(),
-            "2 ^jumps over the lazy dog^".to_string(),
+            "2 ^jumps over the lazy dog^".to_string(), // Caret is supposed to be removed.
         ];
         assert_eq!(input, expected);
     }
