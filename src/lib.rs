@@ -12,7 +12,7 @@ fn normalize_entries<S: Into<String>>(content: S) -> Vec<String> {
     let cst_ending = format!("{}{}", CARET, LINE_ENDING);
     let entries = content
         .into()
-        .trim_end()
+        .trim_end_matches(&cst_ending)
         .split(cst_ending.as_str())
         .map(|s| s.to_string())
         .collect::<Vec<String>>();
@@ -29,7 +29,7 @@ pub fn get_entry<S: Into<String>>(content: S, key: usize) -> String {
         if entry.contains(&key.to_string()) {
             let start_index = entry.find(CARET).unwrap();
             let line = entry.substring(start_index, entry.len());
-            return line.to_string();
+            return line.trim_start_matches(CARET).to_string();
         }
     }
 
@@ -43,7 +43,7 @@ impl UIText {}
 
 #[cfg(test)]
 mod tests {
-    use crate::normalize_entries;
+    use crate::{get_entry, normalize_entries};
 
     #[cfg(windows)]
     const LINE_ENDING: &'static str = "\r\n";
@@ -60,8 +60,19 @@ mod tests {
         dbg!(format!("{:?}", input));
         let expected = [
             "1 ^The quick brown fox".to_string(),
-            "2 ^jumps over the lazy dog^".to_string(), // Caret is supposed to be removed.
+            "2 ^jumps over the lazy dog".to_string(), // Caret is supposed to be removed.
         ];
         assert_eq!(input, expected);
+    }
+
+    #[test]
+    fn test_entry() {
+        let example = format!(
+            "1 ^The quick brown fox^{}2 ^jumps over the lazy dog^{}",
+            LINE_ENDING, LINE_ENDING
+        );
+        let expected = "jumps over the lazy dog".to_string();
+        dbg!(get_entry(&example, 2));
+        assert_eq!(get_entry(example, 2), expected);
     }
 }
