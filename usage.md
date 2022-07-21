@@ -29,6 +29,8 @@ fn main() {
 }
 ```
 
+A working example that parses multiple entries at once can be found in the [examples](./examples) directory.
+
 <!-- 
 ## In Production
 

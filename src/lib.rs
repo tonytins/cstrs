@@ -69,8 +69,8 @@ mod tests {
     #[test]
     fn test_entry() {
         let example = format!(
-            "1 ^The quick brown fox^{}2 ^jumps over the lazy dog^{}",
-            LINE_ENDING, LINE_ENDING
+            "# comment{}1 ^The quick brown fox^{}2 ^jumps over the lazy dog^{}",
+            LINE_ENDING, LINE_ENDING, LINE_ENDING
         );
         let expected = "jumps over the lazy dog".to_string();
         dbg!(get_entry(&example, 2));
