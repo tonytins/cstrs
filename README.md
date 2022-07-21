@@ -19,4 +19,4 @@ For the most part, this is to be a architecturally similar port of [CST.NET](htt
 
 ## License
 
-I license this project under the BSD-3-Clause license - see [LICENSE](LICENSE) for details.
+This project is dual-licensed under the [BSD-3-Clause](COPYING) or the [UNLICENSE](UNLICENSE).
