@@ -17,10 +17,6 @@ Caret-Separated Text (or CST) is a key-value pair format represented by digits o
 
 If you want to create your own internal parsing framework for CST files, you can use the ``get_entry()`` function.
 
-```text
-1 ^The quick brown fox jumps over the lazy dog.^
-```
-
 ```rust
 use cst::get_entry;
 use std::fs::File;
@@ -28,17 +24,9 @@ use std::io::prelude::*;
 use std::path::Path;
 
 fn main() {
-    let path = Path::new("example.cst");
-    let display = path.display();
-    let mut file = match File::open(&path) {
-        Err(why) => panic!("couldn't open {}: {}", display, why),
-        Ok(file) => file,
-    };
-    let mut s = String::new();
-    match file.read_to_string(&mut s) {
-        Err(why) => panic!("couldn't read {}: {}", display, why),
-        Ok(_) => println!("{}", get_entry(s, 1)),
-    }
+    let example = "1 ^The quick brown fox jumps over the lazy dog.^";
+    let entry = get_entry(example, 1);
+    println!("{}", entry);
 }
 ```
 
@@ -68,7 +56,7 @@ Note that that ``UIText`` class uses the above mentioned ``CST.Parse()`` method 
 
 ### Examples
 
-Working example for all of the above can be found at the [examples](./examples) directory.
+More complex stuff can be found in the [examples](./examples) directory.
 
 ## Note
 
