@@ -21,7 +21,16 @@ fn normalize_entries<S: Into<String>>(content: S) -> Vec<String> {
     return entries;
 }
 
-/// Get entries from a file and returns them as a string.
+/// Parses a specific entry from a string.
+///
+/// # Example
+/// ```rust
+/// use cst::get_entry;
+///
+/// let example = "1 ^The quick brown fox jumps over the lazy dog.^";
+/// let entry = get_entry(example, 1);
+/// println!("{}", entry);
+/// ```
 pub fn get_entry<S: Into<String>>(content: S, key: usize) -> String {
     let entries = normalize_entries(content);
 

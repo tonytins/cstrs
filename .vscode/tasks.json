@@ -18,12 +18,18 @@
       "group": "build",
       "label": "Rust: cargo check"
     },
-
     {
       "type": "cargo",
       "subcommand": "test",
       "problemMatcher": ["$rustc"],
       "label": "Rust: cargo test"
+    },
+    {
+      "type": "process",
+      "command": "cargo",
+      "args": ["test", "--doc"],
+      "problemMatcher": ["$rustc"],
+      "label": "Rust: cargo test --doc"
     },
     {
       "type": "cargo",
