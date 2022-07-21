@@ -1,9 +1,11 @@
 [package]
 name = "cst"
-version = "0.1.101"
+version = "0.1.200"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+author = "Tony Bark"
+license = "BSD-3-Clause or UNLICENSE"
+repository = "https://github.com/tonytins/cst.rs"
+readme = "README.md"
 
 [dependencies]
 substring = "1"

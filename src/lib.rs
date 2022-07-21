@@ -58,6 +58,18 @@ pub struct UIText {
     pub language: String,
 }
 
+///
+/// The UIText is a wrapper around the get_entry() function that recursively searches directories for a file with the given language and key.
+///
+/// # Example
+/// ```rust
+/// use cst::UIText;
+///
+/// let ui_text = UIText::new("lorem"); // English.dir
+/// let entry = ui_text.get_text(101, 1); // Entry 1 of _101_[name].cst
+///
+/// println!("{}", entry);
+/// ```
 impl UIText {
     pub fn new<S: Into<String>>(language: S) -> UIText {
         UIText {
