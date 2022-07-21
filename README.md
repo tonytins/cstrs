@@ -19,9 +19,6 @@ If you want to create your own internal parsing framework for CST files, you can
 
 ```rust
 use cst::get_entry;
-use std::fs::File;
-use std::io::prelude::*;
-use std::path::Path;
 
 fn main() {
     let example = "1 ^The quick brown fox jumps over the lazy dog.^";
