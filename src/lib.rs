@@ -1,6 +1,3 @@
-use normalize_line_endings::normalized;
-use std::collections::TryReserveError;
-use std::iter::FromIterator;
 use substring::Substring;
 
 #[cfg(windows)]
@@ -15,20 +12,26 @@ const CARET: char = '^';
 /// # Example
 /// ```
 /// let input = normalize_entries("1 ^The quick brown fox^\n2 ^jumps over the lazy dog^");
-/// assert_eq!(input, vec!["1 ^The quick brown fox^", "2 ^jumps over the lazy dog^"]);
+/// let expected = [
+/// "1 ^The quick brown fox".to_string(),
+/// "2 ^jumps over the lazy dog^".to_string(),
+/// ];
+/// assert_eq!(input, expected);
 /// ```
-fn normalize_entries(content: String) -> Vec<String> {
-    let cst_ending = format!("{CARET}{LINE_ENDING}");
-    let normalized_content = String::from_iter(normalized(content.chars()));
-    let normalized_entries = normalized_content
+fn normalize_entries<S: Into<String>>(content: S) -> Vec<String> {
+    let cst_ending = format!("{}{}", CARET, LINE_ENDING);
+    let entries = content
+        .into()
+        .trim_end()
         .split(cst_ending.as_str())
-        .collect::<Vec<&str>>();
+        .map(|s| s.to_string())
+        .collect::<Vec<String>>();
 
-    return Vec::from_iter(normalized_entries.iter().map(|s| s.to_string()));
+    return entries;
 }
 
 /// Get entries from a file and returns them as a string.
-pub fn get_entry(content: String, key: usize) -> Result<String, TryReserveError> {
+pub fn get_entry<S: Into<String>>(content: S, key: usize) -> String {
     let entries = normalize_entries(content);
 
     // Find the entry
@@ -36,12 +39,12 @@ pub fn get_entry(content: String, key: usize) -> Result<String, TryReserveError>
         if entry.contains(&key.to_string()) {
             let start_index = entry.find(CARET).unwrap();
             let line = entry.substring(start_index, entry.len());
-            return Ok(line.to_string());
+            return line.to_string();
         }
     }
 
     // No entry found.
-    return Ok("***MISSING***".to_string());
+    return "***MISSING***".to_string();
 }
 
 pub struct UIText {}
@@ -51,12 +54,22 @@ impl UIText {}
 #[cfg(test)]
 mod tests {
     use crate::normalize_entries;
+
+    #[cfg(windows)]
+    const LINE_ENDING: &'static str = "\r\n";
+    #[cfg(not(windows))]
+    const LINE_ENDING: &'static str = "\n";
+
     #[test]
-    fn is_missing() {
-        let input =
-            normalize_entries("1 ^The quick brown fox^\n2 ^jumps over the lazy dog^".to_string());
+    fn is_normalized() {
+        let example = format!(
+            "1 ^The quick brown fox^{}2 ^jumps over the lazy dog^{}",
+            LINE_ENDING, LINE_ENDING
+        );
+        let input = normalize_entries(example);
+        dbg!(format!("{:?}", input));
         let expected = [
-            "1 ^The quick brown fox^".to_string(),
+            "1 ^The quick brown fox".to_string(),
             "2 ^jumps over the lazy dog^".to_string(),
         ];
         assert_eq!(input, expected);
