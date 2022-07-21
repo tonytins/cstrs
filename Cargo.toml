@@ -7,3 +7,6 @@ edition = "2021"
 
 [dependencies]
 substring = "1.4"
+
+[dev-dependencies]
+rand = "0.8"

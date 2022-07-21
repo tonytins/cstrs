@@ -9,6 +9,10 @@ Caret-Separated Text (or CST) is a key-value pair format represented by digits o
   - [Visual Studio Code](https://code.visualstudio.com/)
   - [InteliJ IDEA](https://www.jetbrains.com/idea/) or [CLion](https://www.jetbrains.com/clion/)
 
+## Usage
+
+See [usage.md](./usage.md).
+
 ## Note
 
 For the most part, this is to be a architecturally similar port of [CST.NET](https://github.com/tonytins/cstdotnet). With some changes to make it more idiomatic in Rust.

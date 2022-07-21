@@ -12,7 +12,8 @@ fn normalize_entries<S: Into<String>>(content: S) -> Vec<String> {
     let cst_ending = format!("{}{}", CARET, LINE_ENDING);
     let entries = content
         .into()
-        .trim_end_matches(&cst_ending)
+        .trim_end()
+        .trim_end_matches(CARET)
         .split(cst_ending.as_str())
         .map(|s| s.to_string())
         .collect::<Vec<String>>();
@@ -28,8 +29,8 @@ pub fn get_entry<S: Into<String>>(content: S, key: usize) -> String {
     for entry in entries {
         if entry.contains(&key.to_string()) {
             let start_index = entry.find(CARET).unwrap();
-            let line = entry.substring(start_index, entry.len());
-            return line.trim_start_matches(CARET).to_string();
+            let line = entry.substring(start_index + 1, entry.len());
+            return line.to_string();
         }
     }
 
@@ -60,7 +61,7 @@ mod tests {
         dbg!(format!("{:?}", input));
         let expected = [
             "1 ^The quick brown fox".to_string(),
-            "2 ^jumps over the lazy dog".to_string(), // Caret is supposed to be removed.
+            "2 ^jumps over the lazy dog".to_string(),
         ];
         assert_eq!(input, expected);
     }
