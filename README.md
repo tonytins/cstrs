@@ -24,6 +24,7 @@ fn main() {
   let input = "1 ^The quick brown fox jumps over the lazy dog.^";
   let expect = "The quick brown fox jumps over the lazy dog.";
   let entry = get_entry(input, 1);
+
   assert_eq!(entry.unwrap(), expect);
 }
 ```
@@ -44,7 +45,7 @@ fn main() {
 }
 ```
 
-In The Sims Online, it was required translation were prefixed with numbers enclosed in underscores, known as the ID. The IDs were used to locate the right file without having to remember it's name. Meanwhile, each translation was split into their respective ``uitext/<languae>.dir`` directories:
+The Sims Online required each translation file be prefixed with a number and underscores, known as the ID, that are located in ``uitext/[language].dir``. The IDs were used to locate the file, regardless the name.
 
 - ``uitext/english.dir/_154_miscstrings.cst``
 - ``uitext/swedish.dir/_154_miscstrings.cst``
