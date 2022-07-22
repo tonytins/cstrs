@@ -15,7 +15,7 @@ Caret-Separated Text (or CST) is a key-value pair format represented by digits o
 
 ### Basic Parsing
 
-If you want to create your own internal parsing framework for CST files, you can use the ``get_entry()`` function.
+At it's core, CST.rs uses the get_entry() function to parse the CST format.
 
 ```rust
 use cst::get_entry;
@@ -49,7 +49,7 @@ In The Sims Online, it was required translation were prefixed with numbers enclo
 - ``uitext/english.dir/_154_miscstrings.cst``
 - ``uitext/swedish.dir/_154_miscstrings.cst``
 
-Note that that ``UIText`` class uses the above mentioned ``CST.Parse()`` method to parse the files.
+Note that that ``UIText`` struct is simply a wrapper around the the above mentioned ``get_entry()`` function.
 
 ### Examples
 
