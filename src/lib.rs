@@ -10,11 +10,10 @@ const LINE_ENDING: &'static str = "\r\n";
 #[cfg(not(windows))]
 const LINE_ENDING: &'static str = "\n";
 
-const MISSING: &'static str = "***MISSING***";
-
 const CARET: char = '^';
 
-/// Converts the content into a vector of strings, each string being a line.
+/// Converts the content into a vector of strings, each string separated by the last caret in the file.
+// Unfortunately, it doesn't separate comments yet but the get_entry() ignores them, anyway.
 fn normalize_entries<S: Into<String>>(content: S) -> Vec<String> {
     let cst_ending = format!("{}{}", CARET, LINE_ENDING);
     let entries = content
@@ -34,41 +33,41 @@ fn normalize_entries<S: Into<String>>(content: S) -> Vec<String> {
 /// ```rust
 /// use cst::get_entry;
 ///
-/// let example = "1 ^The quick brown fox jumps over the lazy dog.^";
-/// let entry = get_entry(example, 1);
-/// println!("{}", entry);
+/// let input = "1 ^The quick brown fox jumps over the lazy dog.^";
+/// let expect = "The quick brown fox jumps over the lazy dog.";
+/// let entry = get_entry(input, 1);
+/// assert_eq!(entry.unwrap(), expect);
 /// ```
-pub fn get_entry<S: Into<String>>(content: S, key: usize) -> String {
+pub fn get_entry<S: Into<String>>(content: S, key: usize) -> Option<String> {
     let entries = normalize_entries(content);
 
     // Find the entry
     for entry in entries {
         if entry.contains(&key.to_string()) {
-            let start_index = entry.find(CARET).unwrap();
+            let start_index = entry.find(CARET)?;
             let line = entry.substring(start_index + 1, entry.len());
-            return line.to_string();
+            return Some(line.to_string());
         }
     }
 
     // No entry found.
-    return MISSING.to_string();
+    return None;
 }
 
 pub struct UIText {
     pub language: String,
 }
 
-///
 /// The UIText is a wrapper around the get_entry() function that recursively searches directories for a file with the given language and key.
 ///
 /// # Example
 /// ```rust
 /// use cst::UIText;
 ///
-/// let ui_text = UIText::new("lorem"); // English.dir
+/// let ui_text = UIText::new("lorem"); // uitext/lorem.dir
 /// let entry = ui_text.get_text(101, 1); // Entry 1 of _101_[name].cst
 ///
-/// println!("{}", entry);
+/// println!("{}", entry.unwrap());
 /// ```
 impl UIText {
     pub fn new<S: Into<String>>(language: S) -> UIText {
@@ -77,7 +76,7 @@ impl UIText {
         }
     }
 
-    pub fn get_text(&self, id: usize, key: usize) -> String {
+    pub fn get_text(&self, id: usize, key: usize) -> Option<String> {
         let language_dir = format!(
             "{}/uitext/{}.dir/",
             env::current_dir().unwrap().display(),
@@ -99,12 +98,12 @@ impl UIText {
                     };
                 let mut contents = String::new();
                 match open_file.read_to_string(&mut contents) {
-                    Ok(_) => return get_entry(contents, key),
+                    Ok(_) => return Some(get_entry(contents, key)?),
                     Err(why) => panic!("couldn't read {}: {}", f_name, why),
                 }
             }
         }
-        return MISSING.to_string();
+        return None;
     }
 }
 
@@ -122,7 +121,7 @@ mod tests {
         let ui_text = UIText::new("lorem");
         let expected = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac dictum orci, at tincidunt nulla. Donec aliquet, eros non interdum posuere, ipsum sapien molestie nunc, nec facilisis libero ipsum et risus. In sed lorem vel ipsum placerat viverra.".to_string();
         dbg!(ui_text.get_text(101, 1));
-        // assert_eq!(ui_text.get_text(101, 1), expected);
+        assert_eq!(ui_text.get_text(101, 1).unwrap(), expected);
     }
 
     #[test]
@@ -147,6 +146,6 @@ mod tests {
         );
         let expected = "jumps over the lazy dog".to_string();
         dbg!(get_entry(&example, 2));
-        assert_eq!(get_entry(example, 2), expected);
+        assert_eq!(get_entry(example, 2).unwrap(), expected);
     }
 }

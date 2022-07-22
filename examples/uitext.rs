@@ -14,7 +14,7 @@ fn main() {
     for entry in entries {
         println!(
             "{}{}****************{}",
-            ui_text.get_text(101, entry),
+            ui_text.get_text(101, entry).unwrap(),
             LINE_ENDING,
             LINE_ENDING
         );

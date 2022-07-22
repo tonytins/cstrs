@@ -22,7 +22,7 @@ fn ui_text(file: &str, key: usize) {
         Err(why) => panic!("couldn't read {}: {}", display, why),
         Ok(_) => println!(
             "{}{}****************{}",
-            get_entry(s, key),
+            get_entry(s, key).unwrap(),
             LINE_ENDING,
             LINE_ENDING
         ),
