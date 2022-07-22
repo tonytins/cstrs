@@ -3,9 +3,11 @@ name = "cst"
 version = "0.1.201"
 edition = "2021"
 author = "Tony Bark"
-license = "BSD-3-Clause or UNLICENSE"
+license = "BSD-3-Clause OR UNLICENSE"
 repository = "https://github.com/tonytins/cst.rs"
 readme = "README.md"
+keywords = ["translation", "parser", "cst", "sims"]
+categories = ["accessibility", "parser-implementations", "text-processing"]
 
 [dependencies]
 substring = "1"

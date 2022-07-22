@@ -45,7 +45,7 @@ fn main() {
 }
 ```
 
-The Sims Online required each translation file be prefixed with a number and underscores, known as the ID, that are located in ``uitext/[language].dir``. The IDs were used to locate the file, regardless the name.
+The Sims Online required each translation file be prefixed with a number and underscores, known as the ID, that are located in ``uitext/[language].dir``. The IDs were used to locate the file, regardless the name. CST.rs follows this convention because it's the only known use of the format.
 
 - ``uitext/english.dir/_154_miscstrings.cst``
 - ``uitext/swedish.dir/_154_miscstrings.cst``
