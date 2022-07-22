@@ -21,9 +21,10 @@ At it's core, CST.rs uses the get_entry() function to parse the CST format.
 use cst::get_entry;
 
 fn main() {
-    let example = "1 ^The quick brown fox jumps over the lazy dog.^";
-    let entry = get_entry(example, 1);
-    println!("{}", entry);
+  let input = "1 ^The quick brown fox jumps over the lazy dog.^";
+  let expect = "The quick brown fox jumps over the lazy dog.";
+  let entry = get_entry(input, 1);
+  assert_eq!(entry.unwrap(), expect);
 }
 ```
 
@@ -34,14 +35,13 @@ Based on FreeSO's APIs, the UIText struct takes care of the heavy lifting of loc
 ```rust
 use cst::UIText;
 
- // english.dir
-let ui_text = UIText::new("english");
+fn main() {
+  let expect = "The quick brown fox jumps over the lazy dog.";
+  let ui_text = UIText::new("example"); // uitext/example.dir
+  let entry = ui_text.get_text(101, 1); // Entry 1 of _101_[name].cst
 
-// entry 1 of _101_[name].cst, where [name] is whatever 
-// you want to name the file.
-let entry = ui_text.get_entry(101, 1);
-
-println!("{}", entry);
+  assert_eq!(entry.unwrap(), expect);
+}
 ```
 
 In The Sims Online, it was required translation were prefixed with numbers enclosed in underscores, known as the ID. The IDs were used to locate the right file without having to remember it's name. Meanwhile, each translation was split into their respective ``uitext/<languae>.dir`` directories:

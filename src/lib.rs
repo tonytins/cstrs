@@ -64,10 +64,11 @@ pub struct UIText {
 /// ```rust
 /// use cst::UIText;
 ///
-/// let ui_text = UIText::new("lorem"); // uitext/lorem.dir
+/// let expect = "The quick brown fox jumps over the lazy dog.";
+/// let ui_text = UIText::new("example"); // uitext/example.dir
 /// let entry = ui_text.get_text(101, 1); // Entry 1 of _101_[name].cst
 ///
-/// println!("{}", entry.unwrap());
+/// assert_eq!(entry.unwrap(), expect);
 /// ```
 impl UIText {
     pub fn new<S: Into<String>>(language: S) -> UIText {
