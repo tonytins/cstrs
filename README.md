@@ -11,6 +11,20 @@ Caret-Separated Text (or CST) is a key-value pair format represented by digits o
   - [Visual Studio Code](https://code.visualstudio.com/)
   - [InteliJ IDEA](https://www.jetbrains.com/idea/) or [CLion](https://www.jetbrains.com/clion/)
 
+## Installation
+
+```toml
+[dependencies]
+cst = "0.1"
+```
+
+### Development
+
+```toml
+[dependencies]
+cst = { git = "https://github.com/tonytins/cst.rs" }
+```
+
 ## Usage
 
 ### Basic Parsing
