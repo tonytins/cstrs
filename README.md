@@ -22,7 +22,7 @@ cst = "0.1"
 
 ```toml
 [dependencies]
-cst = { git = "https://github.com/tonytins/cst.rs" }
+cst = { git = "https://github.com/tonytins/cst.rs", branch = "develop" }
 ```
 
 ## Usage
