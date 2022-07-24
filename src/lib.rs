@@ -55,7 +55,7 @@ pub fn get_entry<S: Into<String>>(content: S, key: usize) -> Option<String> {
 }
 
 pub struct UIText {
-    pub language: String,
+    language: String,
 }
 
 /// The UIText is a wrapper around the get_entry() function that recursively searches directories for a file with the given language and key.

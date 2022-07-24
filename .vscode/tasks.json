@@ -2,26 +2,29 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "cargo",
-      "subcommand": "build",
+      "type": "process",
+      "command": "cargo",
       "problemMatcher": ["$rustc"],
       "group": {
         "kind": "build",
         "isDefault": true
       },
+      "args": ["build"],
       "label": "Rust: cargo build"
     },
     {
-      "type": "cargo",
-      "subcommand": "check",
+      "type": "process",
+      "command": "cargo",
       "problemMatcher": ["$rustc"],
       "group": "build",
+      "args": ["check"],
       "label": "Rust: cargo check"
     },
     {
-      "type": "cargo",
-      "subcommand": "test",
+      "type": "process",
+      "command": "cargo",
       "problemMatcher": ["$rustc"],
+      "args": ["test"],
       "label": "Rust: cargo test"
     },
     {
@@ -32,17 +35,25 @@
       "label": "Rust: cargo test --doc"
     },
     {
-      "type": "cargo",
-      "subcommand": "clean",
+      "type": "process",
+      "command": "cargo",
       "problemMatcher": ["$rustc"],
+      "args": ["clean"],
       "label": "Rust: cargo clean"
     },
     {
       "type": "process",
       "command": "cargo",
       "problemMatcher": ["$rustc"],
-      "args": ["run", "--example", "main"],
-      "label": "Rust: cargo run example"
+      "args": ["run", "--example", "uitext"],
+      "label": "Rust: cargo run --example uitext"
+    },
+    {
+      "type": "process",
+      "command": "cargo",
+      "problemMatcher": ["$rustc"],
+      "args": ["run", "--example", "entry"],
+      "label": "Rust: cargo run --example entry"
     }
   ]
 }

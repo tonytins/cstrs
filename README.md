@@ -1,6 +1,6 @@
 # CST.rs
 
-[![GitHub license](https://img.shields.io/github/license/tonytins/cst.rs)](https://github.com/tonytins/cst.rs/blob/main/LICENSE) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/tonytins/cst.rs/Rust/main) ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/tonytins/cst.rs)  [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+[![crates.io](https://img.shields.io/crates/v/cst.svg)](https://crates.io/crates/cst) [![GitHub license](https://img.shields.io/github/license/tonytins/cst.rs)](https://github.com/tonytins/cst.rs/blob/main/LICENSE) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/tonytins/cst.rs/Rust/main) ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/tonytins/cst.rs)  [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
 Caret-Separated Text (or CST) is a key-value pair format represented by digits or words as keys and the value as text enclosed between carets. (e.g. ``<key> ^<text>^``) Any text which is not enclosed with carets is considered a comment and ignored. Neither strings nor comments may use the caret character. CST.NET is a library for parsing the CST format.
 
