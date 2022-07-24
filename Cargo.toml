@@ -7,7 +7,7 @@ description = "Parser for the CST format."
 license = "BSD-3-Clause OR Unlicense"
 repository = "https://github.com/tonytins/cstrs"
 readme = "README.md"
-keywords = ["translation", "parser", "cst", "sims", "sims-online", "cst-format"]
+keywords = ["translation", "parser", "cst", "sims", "sims-online"]
 categories = ["accessibility", "parser-implementations", "text-processing"]
 
 [dependencies]
