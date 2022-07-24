@@ -72,7 +72,7 @@ More complex stuff can be found in the [examples](./examples) directory.
 
 ## Note
 
-For the most part, this is to be a architecturally similar port of [CST.NET](https://github.com/tonytins/cst.rs). With some changes to make it more idiomatic in Rust.
+For the most part, this is to be a architecturally similar port of [CST.NET](https://github.com/tonytins/cstdotnet). With some changes to make it more idiomatic in Rust.
 
 ## License
 
