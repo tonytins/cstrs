@@ -5,9 +5,9 @@ edition = "2021"
 author = "Tony Bark"
 description = "Parser for the CST format."
 license = "BSD-3-Clause OR Unlicense"
-repository = "https://github.com/tonytins/cst.rs"
+repository = "https://github.com/tonytins/cstrs"
 readme = "README.md"
-keywords = ["translation", "parser", "cst", "sims"]
+keywords = ["translation", "parser", "cst", "sims", "sims-online", "cst-format"]
 categories = ["accessibility", "parser-implementations", "text-processing"]
 
 [dependencies]
