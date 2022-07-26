@@ -91,7 +91,7 @@ impl UIText {
         {
             let f_name = entry.file_name().to_string_lossy();
             let find_id = format!("_{}_", id);
-            if f_name.find(&find_id) != None && f_name.ends_with(".cst") {
+            if f_name.contains(&find_id) && f_name.ends_with(".cst") {
                 let mut open_file =
                     match File::open(Path::new(format!("{}/{}", language_dir, f_name).as_str())) {
                         Err(_) => panic!("couldn't open {}", f_name),
