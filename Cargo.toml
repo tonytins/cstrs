@@ -2,7 +2,7 @@
 name = "cst"
 version = "0.1.204"
 edition = "2021"
-author = "Tony Bark"
+authors = ["Tony Bark"]
 description = "Parser for the CST format."
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/tonytins/cstrs"
