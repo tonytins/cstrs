@@ -1,15 +1,13 @@
-# CST.rs
+# [CST.rs](http://CST.rs)
 
-[![crates.io](https://img.shields.io/crates/v/cst.svg)](https://crates.io/crates/cst) [![GitHub license](https://img.shields.io/github/license/tonytins/cst.rs)](https://github.com/tonytins/cst.rs/blob/main/LICENSE) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/tonytins/cst.rs/Rust/main) ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/tonytins/cst.rs)  [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
-
-Caret-Separated Text (or CST) is a key-value pair format represented by digits or words as keys and the value as text enclosed between carets. (e.g. ``<key> ^<text>^``) Any text which is not enclosed with carets is considered a comment and ignored. Neither strings nor comments may use the caret character. CST.NET is a library for parsing the CST format.
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/tonytins/cst.rs/Rust/main)![GitHub commit activity](https://img.shields.io/github/commit-activity/w/tonytins/cst.rs)Caret-Separated Text (or CST) is a key-value pair format represented by digits or words as keys and the value as text enclosed between carets. (e.g. `<key> ^<text>^`) Any text which is not enclosed with carets is considered a comment and ignored. Neither strings nor comments may use the caret character. CST.NET is a library for parsing the CST format.
 
 ## Requirements
 
 - Rust 2021 Edition or newer
 - IDEs or Editors
-  - [Visual Studio Code](https://code.visualstudio.com/)
-  - [InteliJ IDEA](https://www.jetbrains.com/idea/) or [CLion](https://www.jetbrains.com/clion/)
+  - [Visual Studio Code](https://code.visualstudio.com/) or [VSCodium](https://vscodium.com/)
+  - [InteliJ IDEA Ultimate](https://www.jetbrains.com/idea/) or [RustOver](https://www.jetbrains.com/rust/)
 
 ## Installation
 
@@ -59,21 +57,21 @@ fn main() {
 }
 ```
 
-The Sims Online required each translation file be prefixed with a number and underscores, known as the ID, that are located in ``uitext/[language].dir``. The IDs were used to locate the file, regardless the name. CST.rs follows this convention because it's the only known use of the format.
+The Sims Online required each translation file be prefixed with a number and underscores, known as the ID, that are located in `uitext/[language].dir`. The IDs were used to locate the file, regardless the name. CST.rs follows this convention because it's the only known use of the format.
 
-- ``uitext/english.dir/_154_miscstrings.cst``
-- ``uitext/swedish.dir/_154_miscstrings.cst``
+- `uitext/english.dir/_154_miscstrings.cst`
+- `uitext/swedish.dir/_154_miscstrings.cst`
 
-Note that that ``UIText`` struct is simply a wrapper around the the above mentioned ``get_entry()`` function.
+Note that that `UIText` struct is simply a wrapper around the the above mentioned `get_entry()` function.
 
 ### Examples
 
 More complex stuff can be found in the [examples](./examples) directory.
 
-## Note
+## To-do
 
-For the most part, this is to be a architecturally similar port of [CST.NET](https://github.com/tonytins/cstdotnet). With some changes to make it more idiomatic in Rust.
+- [ ] Target Rust 2024 Edition
 
 ## License
 
-This project is dual-licensed under the [BSD-3-Clause](COPYING) or the [UNLICENSE](UNLICENSE).
+This project is dual-licensed under the [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE).

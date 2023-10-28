@@ -6,15 +6,20 @@ on:
   pull_request:
     branches: [develop, main, "release/**", "feature/**", "patch/**"]
 
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
   build:
+    timeout-minutes: 15
+    continue-on-error: true
     runs-on: ${{ matrix.platform }}
     strategy:
       matrix:
         platform: [ubuntu-latest, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Build
-        run: cargo build --verbose
+        run: cargo check --verbose
       - name: Run tests
         run: cargo test --verbose

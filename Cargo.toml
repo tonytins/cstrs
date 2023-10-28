@@ -1,10 +1,10 @@
 [package]
 name = "cst"
-version = "0.1.203"
+version = "0.1.204"
 edition = "2021"
 author = "Tony Bark"
 description = "Parser for the CST format."
-license = "BSD-3-Clause OR Unlicense"
+license = "MIT OR Apache-2.0"
 repository = "https://github.com/tonytins/cstrs"
 readme = "README.md"
 keywords = ["translation", "parser", "cst", "sims", "sims-online"]
