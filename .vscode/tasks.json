@@ -5,10 +5,7 @@
       "type": "process",
       "command": "cargo",
       "problemMatcher": ["$rustc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
+      "group": "build",
       "args": ["build"],
       "label": "Rust: cargo build"
     },
@@ -16,7 +13,10 @@
       "type": "process",
       "command": "cargo",
       "problemMatcher": ["$rustc"],
-      "group": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "args": ["check"],
       "label": "Rust: cargo check"
     },

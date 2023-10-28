@@ -110,12 +110,7 @@ impl UIText {
 
 #[cfg(test)]
 mod tests {
-    use crate::{get_entry, normalize_entries, UIText};
-
-    #[cfg(windows)]
-    const LINE_ENDING: &'static str = "\r\n";
-    #[cfg(not(windows))]
-    const LINE_ENDING: &'static str = "\n";
+    use crate::{get_entry, normalize_entries, UIText, LINE_ENDING};
 
     #[test]
     fn get_uitext() {
